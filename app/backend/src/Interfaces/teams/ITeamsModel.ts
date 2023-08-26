@@ -1,6 +1,5 @@
 import ITeams from './ITeams';
 
-interface IItemsModel{
+export default interface ITemsModel{
   findAll(): Promise<ITeams[]>;
 }
-export default IItemsModel;

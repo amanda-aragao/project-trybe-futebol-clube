@@ -1,9 +1,15 @@
-// import { NewEntity } from '../Interfaces';
-// import Teams from '../database/models/Teams';
-// import ITeams from '../Interfaces/teams/ITeams';
-// import  ITemsModel  from '../Interfaces/teams/ITeamsModel';
-// import {ServiceMessage, ServiceResponse} from '../Interfaces/ServiceResponse;;
+import TeamModel from '../models/TeamsModel';
+import ITeams from '../Interfaces/teams/ITeams';
+import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import ITeamsModel from '../Interfaces/teams/ITeamsModel';
 
-// export class TeamsService {
-//   constructor(private model: ITeamsModel = Teams() ) {}
-// }
+class TeamsService {
+  constructor(private model: ITeamsModel = new TeamModel()) {}
+
+  public async findAll(): Promise<ServiceResponse<ITeams[]>> {
+    const db = await this.model.findAll();
+    return { status: 'SUCCESSFUL', data: db };
+  }
+}
+
+export default TeamsService;

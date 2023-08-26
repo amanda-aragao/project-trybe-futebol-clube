@@ -1,9 +1,8 @@
-// import { NewEntity } from '../interfaces';
 import Teams from '../database/models/Teams';
 import ITeams from '../Interfaces/teams/ITeams';
-import IItemsModel from '../Interfaces/teams/ITeamsModel';
+import ItemsModel from '../Interfaces/teams/ITeamsModel';
 
-export class TeamsModel implements IItemsModel {
+export class TeamsModel implements ItemsModel {
   private model = Teams;
 
   async findAll(): Promise<ITeams[]> {
