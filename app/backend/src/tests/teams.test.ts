@@ -30,7 +30,7 @@ describe('Seu teste', () => {
 
   it('Teste se a rota /teams:id retorna somente o time referente ao id', async () => {
     const findId = sinon.stub(TeamsModel, 'findByPk');
-    const teamsID15 = mockTeams.teamsID15 as any;
+    const teamsID15 = mockTeams.teamsID15 as any; 
     findId.resolves(teamsID15); 
     const response = await chai.request(app).get('/teams/15');
 
