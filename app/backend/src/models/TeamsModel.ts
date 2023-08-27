@@ -12,7 +12,7 @@ export class TeamsModel implements IteamsModel {
 
   public async findByIdTeams(id: ITeams['id']): Promise<ITeams | null> {
     const db = await this.model.findByPk(id);
-    if (db == null) {
+    if (!db) {
       return null;
     }
     const { teamName }: ITeams = db;

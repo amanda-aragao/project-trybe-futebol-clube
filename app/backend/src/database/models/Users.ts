@@ -1,11 +1,14 @@
 import {
+  CreationOptional,
   DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
   Model,
 } from 'sequelize';
 import db from '.';
 
-class Users extends Model {
-  declare id: number;
+class Users extends Model <InferAttributes<Users>, InferCreationAttributes<Users>> {
+  declare id: CreationOptional<number>;
   declare username: string;
   declare role: string;
   declare email: string;
@@ -20,25 +23,27 @@ Users.init({
     autoIncrement: true,
   },
   username: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   role: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
   password: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
 }, {
   sequelize: db,
-  modelName: 'users',
+  underscored: true,
   timestamps: false,
+  modelName: 'users',
+  tableName: 'users',
 });
 
 export default Users;
