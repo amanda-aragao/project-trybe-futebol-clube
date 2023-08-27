@@ -7,7 +7,7 @@ class TeamsService {
   constructor(private model: ITeamsModel = new TeamModel()) {}
 
   public async findAllTeams(): Promise<ServiceResponse<ITeams[]>> {
-    const db = await this.model.findAll();
+    const db = await this.model.findAllTeams();
     return { status: 'SUCCESSFUL', data: db };
   }
 

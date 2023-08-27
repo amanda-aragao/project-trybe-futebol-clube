@@ -6,9 +6,9 @@ class App {
 
   constructor() {
     this.app = express();
+    this.config();
     this.app.use(express.json());
     this.routes();
-    this.config();
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
@@ -26,7 +26,6 @@ class App {
       next();
     };
 
-    this.app.use(express.json());
     this.app.use(accessControl);
   }
 
