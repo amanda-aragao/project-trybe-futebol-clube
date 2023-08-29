@@ -13,4 +13,14 @@ export default class UsersController {
     }
     return res.status(200).json(users.data);
   }
+
+  public async userRole(req: Request, res: Response): Promise<Response | void > {
+    const { email } = req.body.user;
+    const users = await this.usersService.userRole(email);
+
+    if (users.status !== 'SUCCESSFUL') {
+      return res.status(401).json(users.data);
+    }
+    return res.status(200).json(users.data);
+  }
 }

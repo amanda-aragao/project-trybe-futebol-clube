@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import JWT from '../utils/JWT';
 
-class Validations {
-  static validateLoginUser(req: Request, res: Response, next: NextFunction): Response | void {
+export default class Validations {
+  static validateLoginUser(req: Request, res: Response, next: NextFunction):
+  Response | void {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const { email, password } = req.body;
@@ -23,15 +24,13 @@ class Validations {
     if (!authorization) {
       return res.status(401).json({ message: 'Token not found' });
     }
-    const token = authorization.split(' ')[1];
     try {
+      const token = authorization.replace('Bearer ', '');
       const validateTokenJWT = JWT.verify(token);
       req.body.user = validateTokenJWT;
     } catch (error) {
       return res.status(401).json({ message: 'Token must be a valid token' });
     }
-
     next();
   }
 }
-export default Validations;

@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcryptjs';
+import { IRole } from '../Interfaces/users/IRole';
 import UserModel from '../models/UsersModel';
 import IUsers from '../Interfaces/users/IUsers';
 import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
@@ -20,9 +21,22 @@ export default class UsersService {
     }
 
     const token = this.jwtService.sign({
-      email: userDB.email,
-      password: userDB.password });
+      email: userDB.email });
 
     return { status: 'SUCCESSFUL', data: { token } };
+  }
+
+  public async userRole(email: string): Promise<ServiceResponse<ServiceMessage | IRole>> {
+    const userDB = await this.usersModel.loginUser(email);
+
+    if (!userDB) {
+      return { status: 'NOT_FOUND', data: { message: 'Invalid role' } };
+    }
+    // const { role } = userDB as IUsers;
+
+    // if (!role) {
+    //   throw new Error('Invalid role');
+    // }
+    return { status: 'SUCCESSFUL', data: { role: userDB.role } };
   }
 }
