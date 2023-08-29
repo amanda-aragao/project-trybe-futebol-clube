@@ -15,15 +15,14 @@ export default class UsersService {
   public async loginUser(user: IUsers): Promise<ServiceResponse<ServiceMessage | IToken>> {
     const userDB = await this.usersModel.loginUser(user.email);
 
-    if (userDB) {
-      if (!bcrypt.compareSync(user.password, userDB.password)) {
-        return { status: 'INVALID_DATA', data: { message: 'Invalid email or password' } };
-      }
-      const { email } = userDB;
-      const token = this.jwtService.sign({ email });
-      return { status: 'SUCCESSFUL', data: { token } };
+    if (!userDB || !bcrypt.compareSync(user.password, userDB.password)) {
+      return { status: 'NOT_FOUND', data: { message: 'Invalid email or password' } };
     }
 
-    return { status: 'NOT_FOUND', data: { message: 'Invalid email or password' } };
+    const token = this.jwtService.sign({
+      email: userDB.email,
+      password: userDB.password });
+
+    return { status: 'SUCCESSFUL', data: { token } };
   }
 }

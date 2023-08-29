@@ -1,3 +1,4 @@
+// import { IToken } from 'src/Interfaces/users/IToken';
 import Users from '../database/models/Users';
 import IUser from '../Interfaces/users/IUsers';
 import IUsersModel from '../Interfaces/users/IUsersModel';
@@ -10,8 +11,7 @@ export class UsersModel implements IUsersModel {
     if (!userDB) {
       return null;
     }
-    const { id, username, role, password } = userDB;
-    return { id, username, role, email, password };
+    return userDB;
   }
 }
 

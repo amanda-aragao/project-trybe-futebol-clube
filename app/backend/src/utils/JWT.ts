@@ -1,4 +1,4 @@
-import { JwtPayload, Secret, sign, SignOptions, verify } from 'jsonwebtoken';
+import { sign, verify, Secret, SignOptions, JwtPayload } from 'jsonwebtoken';
 
 export default class JWT {
   private static secret: Secret = process.env.JWT_SECRET || '';
@@ -16,7 +16,7 @@ export default class JWT {
     try {
       return verify(token, this.secret) as JwtPayload;
     } catch (error) {
-      return 'Token must be a valid token';
+      return 'Invalid token';
     }
   }
 }
