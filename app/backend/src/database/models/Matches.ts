@@ -1,14 +1,13 @@
 import {
   CreationOptional,
   DataTypes,
-  InferAttributes,
-  InferCreationAttributes,
   Model,
 } from 'sequelize';
 import db from '.';
 import Teams from './Teams';
+import IMatches from '../../Interfaces/matches/IMatches';
 
-class Matches extends Model <InferAttributes<Matches>, InferCreationAttributes<Matches>> {
+class Matches extends Model <IMatches> {
   declare id: CreationOptional<number>;
   declare homeTeamId: number;
   declare homeTeamGoals: number;
@@ -27,6 +26,7 @@ Matches.init({
   homeTeamId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'home_team_id',
   },
   homeTeamGoals: {
     type: DataTypes.INTEGER,
@@ -49,10 +49,11 @@ Matches.init({
   underscored: true,
   timestamps: false,
   modelName: 'matches',
-  tableName: 'matches',
 });
 
-Matches.hasMany(Teams, { foreignKey: 'id' });
-Teams.belongsTo(Matches, { foreignKey: 'id' });
+Teams.hasMany(Matches, { foreignKey: 'homeTeamId' as 'homeMatch' });
+Teams.hasMany(Matches, { foreignKey: 'awayTeamId' as 'awayMatch' });
+Matches.belongsTo(Teams, { foreignKey: 'homeTeamId' as 'homeTeam' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeamId' as 'awayTeam' });
 
 export default Matches;

@@ -14,15 +14,6 @@ export class UsersModel implements IUsersModel {
     }
     return userDB;
   }
-
-  // public async userFindEmail(email: IUser['email']): Promise<IUser | null> {
-  //   const userDB = await this.model.findOne({ where: { email } });
-  //   if (!userDB) {
-  //     return null;
-  //   }
-  //   const { id, username, role, password } : IUser = userDB;
-  //   return { id, username, role, email, password };
-  // }
 }
 
 export default UsersModel;
