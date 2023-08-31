@@ -18,4 +18,17 @@ export default class MatchesController {
     const matches = await this.matchesService.findAllMatches();
     res.status(200).json(matches.data);
   }
+
+  public async editInProgressMatch(req: Request, res: Response): Promise<Response | void> {
+    const { id } = req.params;
+    await this.matchesService.editInProgressMatch(Number(id));
+    res.status(200).json({ message: 'Finished' });
+  }
+
+  public async updateMatchesInProgress(req: Request, res: Response): Promise<Response | void> {
+    const { id } = req.params;
+    const dataReq = req.body;
+    await this.matchesService.updateMatchesInProgress(Number(id), dataReq);
+    res.status(200).json({ message: 'updated' });
+  }
 }

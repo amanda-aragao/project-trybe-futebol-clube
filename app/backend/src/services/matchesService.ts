@@ -22,4 +22,14 @@ export default class MatchesService {
     const matchesFinished = db.filter((match) => match.inProgress === false);
     return matchesFinished;
   }
+
+  public async editInProgressMatch(id: number): Promise<IMatches[] | void> {
+    const matches = await this.model.editInProgressMatch(id);
+    return matches;
+  }
+
+  public async updateMatchesInProgress(id: number, data: object): Promise<IMatches[] | void> {
+    const matches = await this.model.updateMatchesInProgress(id, data);
+    return matches;
+  }
 }

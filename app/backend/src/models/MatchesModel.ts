@@ -29,4 +29,12 @@ export default class MatchesModel implements IMatchesModel {
     const matchesFinished = db.filter((match) => match.inProgress === false);
     return matchesFinished;
   }
+
+  public async editInProgressMatch(id: number): Promise<void | IMatches[]> {
+    await this.model.update({ inProgress: false }, { where: { id } });
+  }
+
+  public async updateMatchesInProgress(id: number, data: object): Promise<void | IMatches[]> {
+    await this.model.update(data, { where: { id } });
+  }
 }
