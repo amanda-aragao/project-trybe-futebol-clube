@@ -11,13 +11,15 @@ export default class MatchesService {
     return { status: 'SUCCESSFUL', data: db };
   }
 
-  // public async matchesInProgress(inProgress: boolean): Promise<ServiceResponse<IMatches[]>> {
-  //   const db = await this.model.matchesInProgress();
-  //   return { status: 'SUCCESSFUL', data: db };
-  // }
+  public async inProgressMatches(): Promise<IMatches[]> {
+    const db = await this.model.findAllMatches();
+    const matchesInProgress = db.filter((match) => match.inProgress === true);
+    return matchesInProgress;
+  }
 
-  // public async matchesFinished(inProgress: boolean): Promise<ServiceResponse<IMatches[]>> {
-  //   const db = await this.model.matchesInProgress();
-  //   return { status: 'SUCCESSFUL', data: db };
-  // }
+  public async finishedMatches(): Promise<IMatches[]> {
+    const db = await this.model.findAllMatches();
+    const matchesFinished = db.filter((match) => match.inProgress === false);
+    return matchesFinished;
+  }
 }

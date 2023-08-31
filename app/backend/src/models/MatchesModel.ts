@@ -6,7 +6,6 @@ import Teams from '../database/models/Teams';
 export default class MatchesModel implements IMatchesModel {
   constructor(
     private model = Matches,
-    // private teams = Teams,
   ) {}
 
   public async findAllMatches(): Promise<IMatches[]> {
@@ -19,17 +18,15 @@ export default class MatchesModel implements IMatchesModel {
     return userDB;
   }
 
-  //   public async matchesInProgress(): Promise<IMatches[]> {
-  //  const db = await this.model.findAll({
-  //   }
+  public async inProgressMatches(): Promise<IMatches[]> {
+    const db = await this.findAllMatches();
+    const matchesInProgress = db.filter((match) => match.inProgress === true);
+    return matchesInProgress;
+  }
 
-//   public async matchesFinished(): Promise<IMatches[]> {
-  // const userDB = await this.model.findAll({
-  //   include: [
-  //     { model: Teams, as: 'homeTeam', attributes: { exclude: ['id'] } },
-  //     { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } },
-  //   ],
-  // });
-  // return userDB;
-  // }
+  public async finishedMatches(): Promise<IMatches[]> {
+    const db = await this.findAllMatches();
+    const matchesFinished = db.filter((match) => match.inProgress === false);
+    return matchesFinished;
+  }
 }

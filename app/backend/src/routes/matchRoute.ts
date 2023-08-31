@@ -6,5 +6,6 @@ const router = express.Router();
 const matchController = new MatchesController();
 
 router.get('/', (req: Request, res: Response) => matchController.findAllMatches(req, res));
+router.get('/', (req: Request, res: Response) => matchController.matchesInProgressOurNot(req, res));
 
 export default router;
