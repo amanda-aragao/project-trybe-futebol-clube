@@ -2,7 +2,7 @@ import Teams from '../database/models/Teams';
 import ITeams from '../Interfaces/teams/ITeams';
 import IteamsModel from '../Interfaces/teams/ITeamsModel';
 
-export class TeamsModel implements IteamsModel {
+class TeamsModel implements IteamsModel {
   constructor(private model = Teams) {}
 
   public async findAllTeams(): Promise<ITeams[]> {

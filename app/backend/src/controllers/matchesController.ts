@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import MatchesService from '../services/matchesService';
+// import { ServiceResponse } from '../Interfaces/ServiceResponse';
 
 export default class MatchesController {
   constructor(private matchesService = new MatchesService()) {}
@@ -30,5 +31,12 @@ export default class MatchesController {
     const dataReq = req.body;
     await this.matchesService.updateMatchesInProgress(Number(id), dataReq);
     res.status(200).json({ message: 'updated' });
+  }
+
+  public async createMatch(req: Request, res: Response): Promise<Response | void> {
+    const dataReq = req.body;
+    const newMatch = await this.matchesService.createMatch(dataReq);
+
+    return res.status(newMatch.status).json(newMatch.data);
   }
 }

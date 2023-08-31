@@ -2,6 +2,7 @@ import Matches from '../database/models/Matches';
 import IMatches from '../Interfaces/matches/IMatches';
 import IMatchesModel from '../Interfaces/matches/IMatchesModel';
 import Teams from '../database/models/Teams';
+import IMatchesResponse from '../Interfaces/IMatchesResponse';
 
 export default class MatchesModel implements IMatchesModel {
   constructor(
@@ -36,5 +37,10 @@ export default class MatchesModel implements IMatchesModel {
 
   public async updateMatchesInProgress(id: number, data: object): Promise<void | IMatches[]> {
     await this.model.update(data, { where: { id } });
+  }
+
+  public async createMatch(data: IMatches): Promise< IMatchesResponse > {
+    const newMatch = await this.model.create({ ...data, inProgress: true });
+    return { status: 201, data: newMatch };
   }
 }
