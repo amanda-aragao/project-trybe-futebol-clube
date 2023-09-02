@@ -14,10 +14,8 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Teste referente a rota /teams', () => {
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
   afterEach(function() { sinon.restore() });
+
   it('Teste se a rota /teams retorna todos os times', async () => {
     const findAllStub = sinon.stub(TeamsModel, 'findAll');
     findAllStub.resolves(mockTeams.allTeams as any); 

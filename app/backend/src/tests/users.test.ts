@@ -10,6 +10,7 @@ import * as jwt from 'jsonwebtoken';
 
 
 import { app } from '../app';
+import { response } from 'express';
 
 chai.use(chaiHttp);
 
@@ -31,9 +32,9 @@ describe('Teste referente a rota /login', () => {
     sinon.stub(userModel, 'findOne').resolves(mockUser.userLoginWithoutEmail as any);
     sinon.stub(jwt, 'sign').returns(mockUser.mockToken as any);
 
-    const response = await chai.request(app).post('/login');
+    const response = await chai.request(app).post('/login').send(mockUser.userLoginWithoutEmail);
     expect(response.status).to.equal(400);
-    expect(response.body.message).to.equal("All fields must be filled");
+    expect(response.body.message).to.deep.equal("All fields must be filled");
     expect(response.body).to.be.an('object');
 
   });
@@ -42,7 +43,7 @@ describe('Teste referente a rota /login', () => {
     sinon.stub(userModel, 'findOne').resolves(mockUser.userLoginWithoutPassword as any);
     sinon.stub(jwt, 'sign').returns(mockUser.mockToken as any);
 
-    const response = await chai.request(app).post('/login');
+    const response = await chai.request(app).post('/login').send(mockUser.userLoginWithoutPassword);
     expect(response.status).to.equal(400);
     expect(response.body.message).to.equal("All fields must be filled");
     expect(response.body).to.be.an('object');
@@ -55,7 +56,7 @@ describe('Teste referente a rota /login', () => {
     const response = await chai.request(app).post('/login').send(mockUser.userLoginEmailWrong);
     expect(response.status).to.equal(401);
     expect(response.body).to.be.an('object');
-    expect(response.body.message).to.equal("Invalid email or password");
+    expect(response.body.message).to.deep.equal("Invalid email or password");
   });
 
   it('Deve retornar uma mensagem de erro caso o usuário insira seu e-mail de forma incorreta', async function() {
@@ -64,7 +65,8 @@ describe('Teste referente a rota /login', () => {
     const response = await chai.request(app).post('/login').send(mockUser.userLoginPasswordWrong);
     expect(response.status).to.equal(401);
     expect(response.body).to.be.an('object');
-    expect(response.body.message).to.equal("Invalid email or password");
+    
+    expect(response.body.message).to.deep.equal("Invalid email or password");
   });
 
 });
