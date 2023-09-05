@@ -1,59 +1,73 @@
-const leaderBoard = [
-  {
-    "id": 1,
-    "homeTeamId": 16,
-    "homeTeamGoals": 3,
-    "awayTeamId": 8,
-    "awayTeamGoals": 1,
-    "inProgress": false,
-    "homeTeam": {
-      "teamName": "São Paulo"
-    },
-    "awayTeam": {
-      "teamName": "Grêmio"
-    }
+const leaderBoard = 
+  [  {
+    "name": "Avaí/Kindermann",
+    "totalPoints": 91,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 1,
+    "totalLosses": 30,
+    "goalsFavor": 4,
+    "goalsOwn": 8
   },
   {
-    "id": 2,
-    "homeTeamId": 9,
-    "homeTeamGoals": 1,
-    "awayTeamId": 14,
-    "awayTeamGoals": 1,
-    "inProgress": false,
-    "homeTeam": {
-      "teamName": "Internacional"
-    },
-    "awayTeam": {
-      "teamName": "Santos"
-    },
+    "name": "Bahia",
+    "totalPoints": 92,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 2,
+    "totalLosses": 30,
+    "goalsFavor": 2,
+    "goalsOwn": 6
   },
   {
-    "id": 41,
-    "homeTeamId": 16,
-    "homeTeamGoals": 2,
-    "awayTeamId": 9,
-    "awayTeamGoals": 0,
-    "inProgress": true,
-    "homeTeam": {
-      "teamName": "São Paulo"
-    },
-    "awayTeam": {
-      "teamName": "Internacional"
-    }
+    "name": "Botafogo",
+    "totalPoints": 91,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 1,
+    "totalLosses": 30,
+    "goalsFavor": 3,
+    "goalsOwn": 8
   },
   {
-    "id": 42,
-    "homeTeamId": 6,
-    "homeTeamGoals": 1,
-    "awayTeamId": 1,
-    "awayTeamGoals": 0,
-    "inProgress": true,
-    "homeTeam": {
-      "teamName": "Ferroviária"
-    },
-    "awayTeam": {
-      "teamName": "Avaí/Kindermann"
-    }
-  }
+    "name": "Corinthians",
+    "totalPoints": 90,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 0,
+    "totalLosses": 30,
+    "goalsFavor": 12,
+    "goalsOwn": 3
+  },
+  {
+    "name": "Cruzeiro",
+    "totalPoints": 91,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 1,
+    "totalLosses": 30,
+    "goalsFavor": 8,
+    "goalsOwn": 10
+  },
+  {
+    "name": "Ferroviária",
+    "totalPoints": 91,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 1,
+    "totalLosses": 30,
+    "goalsFavor": 7,
+    "goalsOwn": 7
+  },
+  {
+    "name": "Flamengo",
+    "totalPoints": 92,
+    "totalGames": 5,
+    "totalVictories": 30,
+    "totalDraws": 2,
+    "totalLosses": 30,
+    "goalsFavor": 2,
+    "goalsOwn": 5
+  },
 ]
 export default leaderBoard;

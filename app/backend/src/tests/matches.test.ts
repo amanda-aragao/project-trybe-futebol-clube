@@ -2,11 +2,13 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 // @ts-ignore
 import chaiHttp = require('chai-http');
+import * as JWT from 'jsonwebtoken';
 import MatchesModelDB from '../database/models/Matches';
 import mockMathes from './Mocks/matches';
 
 
 import { app } from '../app';
+
 chai.use(chaiHttp);
 
 const { expect } = chai;
@@ -43,6 +45,27 @@ describe('Teste referente a rota /matches', () => {
     expect(response.status).to.be.equal(200);
     expect(response.body).to.be.an('array');
     expect(response.body).to.be.deep.equal(mockMathes.matchesFinished);
+  });
+
+  it('Deve criar uma nova partida com dados válidos', async () => {
+    const mockNewMatch = {
+      homeTeamId: 1,
+      awayTeamId: 2,
+      homeTeamGoals: 0,
+      awayTeamGoals: 0,
+      inProgress: true,
+    
+    }
+    const authorizationToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5MzUwOTQ1OX0.TeiKGg-BhntNDAMd2jZz2cM8j5gSvw7CDy5ntf5XaWo'
+
+    sinon.stub(MatchesModelDB, 'create').resolves(mockNewMatch as any);
+    sinon.stub( JWT, 'verify').resolves({email: 'admin@admin.com'} as any);
+    const response = await chai.request(app).post('/matches').set("Authorization", authorizationToken)
+    .send(mockNewMatch);
+    expect(response.status).to.be.equal(201);
+    expect(response.body).to.be.an('object');
+    expect(response.body).to.be.deep.equal(mockNewMatch);
+
   });
 
 });

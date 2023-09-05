@@ -126,6 +126,7 @@ const matchesFinished = [
     "homeTeamGoals": 2,
     "awayTeamGoals": 2
   }
+  
 
   const returnNewMatchData = 
     {
@@ -134,15 +135,15 @@ const matchesFinished = [
       "homeTeamGoals": 2,
       "awayTeamId": 8,
       "awayTeamGoals": 2,
-      "inProgress": true
     }
   
-
   const updateMatchId = {
     "homeTeamGoals": 3,
     "awayTeamGoals": 1
   }
 
-    export default { matches, matchesInProgress, newMatchData,updateMatchId, matchesFinished, returnNewMatchData  };
+  const editInProgressId = { "message": "Finished" }
+
+    export default { matches, matchesInProgress, newMatchData,updateMatchId, matchesFinished, returnNewMatchData, editInProgressId  };
 
     
