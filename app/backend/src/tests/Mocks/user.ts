@@ -46,5 +46,7 @@ const mockToken = {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6ImJhdGF0aW5oYTEyMyJ9.Z4rGSpVxKQd78d8CgwjCTqXTHtoSr8ACQX9IBlx2kuo"
 }
 
+const authorizationToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5MzUwOTQ1OX0.TeiKGg-BhntNDAMd2jZz2cM8j5gSvw7CDy5ntf5XaWo'
 
-  export default { user, userLogin, mockToken, userLoginWithoutEmail, userLoginWithoutPassword, userLoginPasswordWrong, userLoginEmailWrong};
+
+  export default { user, userLogin, mockToken, userLoginWithoutEmail, userLoginWithoutPassword, userLoginPasswordWrong, userLoginEmailWrong, authorizationToken};

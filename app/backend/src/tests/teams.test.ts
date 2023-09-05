@@ -37,4 +37,14 @@ describe('Teste referente a rota /teams', () => {
     expect(response.body).to.be.an('object');
   });
 
+  it('Teste se a rota /teams:id retorna mensagem de erro ao inserir um id não existente', async () => {
+    const findId = sinon.stub(TeamsModel, 'findByPk');
+    findId.resolves(null); 
+    const response = await chai.request(app).get('/teams/150');
+
+    expect(response).to.have.status(404);
+    expect(response.body).to.be.deep.equal({ message: 'Sorry i can\'t find id the teams' });
+    expect(response.body).to.be.an('object');
+  }); 
+
 });

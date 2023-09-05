@@ -52,6 +52,8 @@ describe('Teste referente a rota /login', () => {
   it('Deve retornar uma mensagem de erro caso o usuário insira seu e-mail de forma incorreta', async function () {
     sinon.stub(userModel, 'findOne').resolves(mockUser.user as any);
 
+    sinon.stub(jwt, 'verify').returns({ email: "admindmin.com" } as any);
+
     const response = await chai.request(app).post('/login').send(mockUser.userLoginEmailWrong);
     expect(response.status).to.equal(401);
     expect(response.body).to.be.an('object');
@@ -69,15 +71,23 @@ describe('Teste referente a rota /login', () => {
   });
 
   it('Testa o status 200 da rola /login/role', async () => {
-    const authorizationToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5MzUwOTQ1OX0.TeiKGg-BhntNDAMd2jZz2cM8j5gSvw7CDy5ntf5XaWo'
     sinon.stub(userModel, 'findOne').resolves(mockUser.user as any);
-    sinon.stub(jwt, 'verify').returns({ email: "admin@admin.com", 
-    password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW' } as any);
+    sinon.stub(jwt, 'verify').returns({ email: "admin@admin.com"} as any);
 
-    const response = await chai.request(app).get('/login/role').set("Authorization", authorizationToken);
+    const response = await chai.request(app).get('/login/role').set("Authorization", mockUser.authorizationToken);
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
     expect(response.body).to.have.property('role');
+  });
+
+  it('Testa o status 401 da rola /login/role caso o token não seja informado', async () => {
+    sinon.stub(userModel, 'findOne').resolves(mockUser.user as any);
+    sinon.stub(jwt, 'verify').returns({ email: "admin@admin.com"} as any);
+
+    const response = await chai.request(app).get('/login/role').set("oi", 'oi');
+    expect(response.status).to.equal(401);
+    expect(response.body).to.be.deep.equal({ "message": "Token not found" });
+    // expect(response.body).to.have.property('role');
   });
 
 

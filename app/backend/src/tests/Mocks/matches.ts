@@ -143,7 +143,9 @@ const matchesFinished = [
   }
 
   const editInProgressId = { "message": "Finished" }
+  const authorizationToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY5MzUwOTQ1OX0.TeiKGg-BhntNDAMd2jZz2cM8j5gSvw7CDy5ntf5XaWo'
 
-    export default { matches, matchesInProgress, newMatchData,updateMatchId, matchesFinished, returnNewMatchData, editInProgressId  };
+
+    export default { matches, matchesInProgress, newMatchData,updateMatchId, matchesFinished, returnNewMatchData, editInProgressId, authorizationToken  };
 
     

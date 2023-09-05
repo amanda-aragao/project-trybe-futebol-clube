@@ -7,5 +7,7 @@ const leaderBoardController = new LeaderBoardController();
 
 router.get('/home', (req: Request, res: Response) =>
   leaderBoardController.findAllLeaderBoard(req, res));
+router.get('/away', (req: Request, res: Response) =>
+  leaderBoardController.findAllLeaderBoard(req, res));
 
 export default router;

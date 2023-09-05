@@ -100,12 +100,11 @@ export default class LeaderBoardService {
       awayOwnGoals };
   }
 
-  private static mapLeaderBoard(allTeams: ITeams[], finishedMatches: IMatches[]): object {
+  private static mapLeaderBoard(allTeams: ITeams[], finishedMatches: IMatches[])
+    : Array<ILeaderBoard> {
     return allTeams.map((team) => {
-      const { victories, draws,
-        defeatTeams, homeTeamMatches,
-        awayTeamMatches, homeGoals, awayGoals,
-        homeOwnGoals, awayOwnGoals } = LeaderBoardService.getCalc(finishedMatches, team);
+      const { victories, draws, defeatTeams, homeTeamMatches, awayTeamMatches, homeGoals,
+        awayGoals, homeOwnGoals, awayOwnGoals } = LeaderBoardService.getCalc(finishedMatches, team);
       const goalsFavor = homeGoals + awayGoals;
       const goalsOwn = homeOwnGoals + awayOwnGoals;
       return {
@@ -117,7 +116,6 @@ export default class LeaderBoardService {
         totalLosses: defeatTeams,
         goalsFavor,
         goalsOwn,
-        // goalsBalance: goalsFavor - goalsOwn,
       };
     });
   }
