@@ -1,10 +1,28 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Trybe Futebol Clube
+
+O projeto **Trybe Futebol Clube** é uma aplicação Full Stack que simula um sistema de gerenciamento de partidas e classificações de futebol. Ao realizar login, o usuário, tem acesso as informações além de poder alterar resultados das partidas e inserir partidas que estão em andamento.
+
+## Tecnologias Utilizadas
+
+### Front-end
+ - ReactJS
+ - React Router
+
+### Back-end
+* Express
+* TypeScript
+* Docker
+* Sequelize
+* MySQL
+* JWT
+* MSC - Arquitetura de Software (Model, Service e Controller).
+
+### Testes em Back-end
+* Mocha
+* Chai
+* Sinon
+
+### Padronização e Organizaçao de código 
+* ESLint
+
+#### Desenvolvido por Amanda Aragão - 2023.
